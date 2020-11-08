@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="SmartGardenMobile.Views.AboutPage"
+             x:Class="SmartGardenMobile.Views.HomePage"
              xmlns:vm="clr-namespace:SmartGardenMobile.ViewModels"
              Title="{Binding Title}">
     
     <ContentPage.BindingContext>
-        <vm:AboutViewModel />
+        <vm:HomeViewModel />
     </ContentPage.BindingContext>
     
     <ContentPage.Resources>
@@ -23,16 +23,16 @@
         <ScrollView Grid.Row="1">
             <StackLayout Orientation="Vertical" Padding="30,24,30,24" Spacing="10">
                 <Label Text="Temperature:" FontSize="16"/>
-                <Label Text="{Binding Temperature}" FontSize="16"/>
+                <Label Text="{Binding Temperature, StringFormat='{0:F2}°C'}" FontSize="16"/>
 
                 <Label Text="Humidity:" FontSize="16"/>
-                <Label Text="{Binding Humidity}" FontSize="16"/>
+                <Label Text="{Binding Humidity, StringFormat='{0:F2}%'}" FontSize="16"/>
 
                 <Label Text="Soil moisture:" FontSize="16"/>
-                <Label Text="{Binding SoilMoisture}" FontSize="16"/>
+                <Label Text="{Binding SoilMoisture, StringFormat='{0:F2}%'}" FontSize="16"/>
 
                 <Label Text="Light:" FontSize="16"/>
-                <Label Text="{Binding Light}" FontSize="16"/>
+                <Label Text="{Binding Light, StringFormat='{0:F2}%'}" FontSize="16"/>
 
                 <Label Text="Is raining:" FontSize="16"/>
                 <Label Text="{Binding IsRaining}" FontSize="16"/>

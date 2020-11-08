@@ -8,13 +8,14 @@ using Xamarin.Forms.Xaml;
 
 namespace SmartGardenMobile.Views
 {
-    public partial class AboutPage : ContentPage
+    public partial class HomePage : ContentPage
     {
-        public AboutPage()
+        public HomePage()
         {
             InitializeComponent();
-            BindingContext = new AboutViewModel();
-
+            var viewModel = new HomeViewModel();
+            BindingContext = viewModel;
+            viewModel.GetLastMeasurement();
         }
 
 

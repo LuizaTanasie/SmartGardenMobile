@@ -8,7 +8,7 @@ using Xamarin.Forms;
 
 namespace SmartGardenMobile.ViewModels
 {
-    public class AboutViewModel : BaseViewModel
+    public class HomeViewModel : BaseViewModel
     {
         RestService _restService;
         public SmartPotModel measurement = new SmartPotModel();
@@ -63,16 +63,16 @@ namespace SmartGardenMobile.ViewModels
             }
         }
 
-        public AboutViewModel()
+        public HomeViewModel()
         {
             _restService = new RestService();
             Title = "Main";
-            OnGetMeasurementButtonClicked = new Command(() =>Get());
+            OnGetMeasurementButtonClicked = new Command(() => GetLastMeasurement());
         }
 
         public ICommand OnGetMeasurementButtonClicked { get; }
 
-        public async void  Get()
+        public async void GetLastMeasurement()
         {
             var m =  await _restService.GetLastMeasurement(new Guid("B06C58EF-D364-47BB-BF21-6317872018E3"));
             Temperature = m?.Temperature;

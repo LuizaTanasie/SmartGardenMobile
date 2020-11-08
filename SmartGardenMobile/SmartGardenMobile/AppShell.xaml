@@ -60,7 +60,7 @@
         </ResourceDictionary>
     </Shell.Resources>
     <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
-        <ShellContent Title="About" Icon="tab_about.png" Route="AboutPage" ContentTemplate="{DataTemplate local:AboutPage}" />
+        <ShellContent Title="About" Icon="tab_about.png" Route="HomePage" ContentTemplate="{DataTemplate local:HomePage}" />
     </FlyoutItem>
 
 </Shell>
