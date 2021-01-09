@@ -74,7 +74,7 @@ namespace SmartGardenMobile.ViewModels
 
         public async void GetLastMeasurement()
         {
-            var m =  await _restService.GetLastMeasurement(new Guid("B06C58EF-D364-47BB-BF21-6317872018E3"));
+            var m =  await _restService.GetLastMeasurement(new Guid("2BFFE84B-5857-4A54-BCCC-72C20BF36835"));
             Temperature = m?.Temperature;
             SoilMoisture = m?.SoilMoisture;
             Humidity = m?.Humidity;

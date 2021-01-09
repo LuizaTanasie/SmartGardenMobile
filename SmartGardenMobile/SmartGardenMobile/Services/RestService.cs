@@ -27,7 +27,7 @@ namespace SmartGardenMobile.Services
             SmartPotModel measurement = null;
             try
             {
-                var response = await _client.GetAsync("https://192.168.0.63:8000/api/SmartPot/GetLastMeasurement?deviceId=" + deviceId);
+                var response = await _client.GetAsync("https://192.168.0.10:8000/api/SmartPot/GetLastMeasurement?deviceId=" + deviceId);
                 if (response.IsSuccessStatusCode)
                 {
                     var content = await response.Content.ReadAsStringAsync();
