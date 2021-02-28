@@ -1,6 +1,7 @@
 ﻿using SmartGardenMobile.Models;
 using SmartGardenMobile.Services;
 using System;
+using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Essentials;
@@ -74,7 +75,9 @@ namespace SmartGardenMobile.ViewModels
 
         public async void GetLastMeasurement()
         {
-            var m =  await _restService.GetLastMeasurement(new Guid("2BFFE84B-5857-4A54-BCCC-72C20BF36835"));
+            string fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "deviceId.txt");
+            var deviceId = File.ReadAllText(fileName);
+            var m =  await _restService.GetLastMeasurement(Guid.Parse(deviceId));
             Temperature = m?.Temperature;
             SoilMoisture = m?.SoilMoisture;
             Humidity = m?.Humidity;

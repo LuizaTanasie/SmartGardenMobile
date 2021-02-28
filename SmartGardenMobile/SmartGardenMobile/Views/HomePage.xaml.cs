@@ -17,7 +17,5 @@ namespace SmartGardenMobile.Views
             BindingContext = viewModel;
             viewModel.GetLastMeasurement();
         }
-
-
     }
 }

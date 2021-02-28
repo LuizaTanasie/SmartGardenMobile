@@ -2,6 +2,7 @@
 using SmartGardenMobile.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,7 @@ namespace SmartGardenMobile.Services
     public class RestService
     {
         HttpClient _client;
+        private readonly string API = "https://sg-func.azurewebsites.net/api/";
 
         public RestService()
         {
@@ -27,7 +29,7 @@ namespace SmartGardenMobile.Services
             SmartPotModel measurement = null;
             try
             {
-                var response = await _client.GetAsync("https://192.168.0.10:8000/api/SmartPot/GetLastMeasurement?deviceId=" + deviceId);
+                var response = await _client.GetAsync(API+ "/GetLatestMeasurement?DeviceId=" + deviceId);
                 if (response.IsSuccessStatusCode)
                 {
                     var content = await response.Content.ReadAsStringAsync();
@@ -41,5 +43,29 @@ namespace SmartGardenMobile.Services
 
             return measurement;
         }
+        public async Task<Guid?> RegisterDevice(string serialNumber)
+        {
+            try
+            {
+                var response = await _client.GetAsync(API + "/RegisterDevice?SerialNumber=" + serialNumber);
+                if (response.IsSuccessStatusCode)
+                {
+                    var content = await response.Content.ReadAsStringAsync();
+                    var id = JsonConvert.DeserializeObject<string>(content);
+
+                    if (Guid.TryParse(id, out _))
+                    {
+                        return Guid.Parse(id);
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("\t\tERROR {0}", ex.Message);
+            }
+            return null;
+        }
+
     }
 }
